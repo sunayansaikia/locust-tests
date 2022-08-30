@@ -1,0 +1,2 @@
+from locustio/locust:2.11.0
+RUN set -ex && pip install PyMySQL SQLAlchemy PyHive trino trino[sqlalchemy]

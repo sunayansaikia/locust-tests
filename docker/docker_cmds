@@ -1,0 +1,14 @@
+docker run -p 8089:8089 -v $PWD:/mnt/locust locustio/locust:2.11.0 -f /mnt/locust/locustfile.py
+docker run --rm --name locust-trino --network=trino-hive-superset-docker_default -p 8089:8089 -v $PWD:/mnt/locust locustio/locust:2.11.0_dbs  -f /mnt/locust/locust-trino.py --headless --hatch-rate=10 --run-time=1m --users 1
+
+docker run --rm --name locust-trino --network=trino-hive-superset-docker_default -p 8089:8089 -v $PWD:/mnt/locust locustio/locust:2.11.0_dbs  -f /mnt/locust/locustfile.py --autostart --hatch-rate=10 --run-time=1m --users 1 --host=http://localhost:8089
+
+docker run --rm --name locust-trino --network=trino-hive-superset-docker_default -p 8089:8089 -v $PWD:/mnt/locust locustio/locust:2.11.0_dbs  -f /mnt/locust/locust-trino.py --autostart --hatch-rate=10 --run-time=1m --users 1 --host=http://localhost:8089
+
+working:
+docker run --rm --name locust-trino --network=trino-hive-superset-docker_default -p 8089:8089 -v $PWD:/mnt/locust locustio/locust:2.11.0_dbs  -f /mnt/locust/locust-trino-sqlalchemy.py --autostart --hatch-rate=10 --run-time=1m --users 1 --host=http://localhost:8089
+
+
+refer: https://stackoverflow.com/questions/59832109/stop-locust-when-specified-number-of-user-tasks-complete
+refer: https://stackoverflow.com/questions/60163341/stop-locust-after-specific-number-of-requests
+refer: https://medium.com/analytics-vidhya/create-custom-clients-in-locust-io-to-test-database-performance-fd71235ece6e
